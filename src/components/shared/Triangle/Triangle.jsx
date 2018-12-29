@@ -1,10 +1,15 @@
 import React from 'react'
+import classNames from 'classnames'
 
 import "./Triangle.scss"
 
-const Triangle= ({onClick, style: {triangle}}) => {
+const Triangle= ({onClick, isSelected}) => {
+  const styles = classNames({
+    'triangle--selected' : isSelected,
+ })  
+ 
   return (
-    <div className="triangle" onClick={onClick} style={triangle}>
+    <div className={`triangle ${styles}`} onClick={onClick}>
       
     </div>
   )

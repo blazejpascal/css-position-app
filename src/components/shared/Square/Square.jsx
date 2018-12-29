@@ -1,10 +1,14 @@
 import React from 'react'
+import classNames from 'classnames'
 
 import "./Square.scss"
 
-const Square = ({onClick, style: {square}}) => {
+const Square = ({onClick, isSelected}) => {
+  const styles = classNames({
+    'square--selected' : isSelected,
+ })  
   return (
-    <div className="square" onClick={onClick} style={square}>
+      <div className={`square ${styles}`}  onClick={onClick}>
       
     </div>
   )

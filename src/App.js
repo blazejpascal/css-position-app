@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
 import './App.scss';
-import ElementContainer from './components/shared/ElementContainer/ElementContainer';
 
+import ContainerWithSettings from './components/shared/ContainerWithSettings/ContainerWithSettings';
 
 class App extends Component {
-
   render() {
     return (
       <div className="App">
-         <ElementContainer />
-         <ElementContainer />
-         <ElementContainer />
+        <ContainerWithSettings />
       </div>
     );
   }
 }
 
 export default App;
+
+
+

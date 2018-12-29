@@ -3,58 +3,46 @@ import React, {Component} from 'react'
 import Circle from '../circle/Circle';
 import Square from '../Square/Square';
 import Triangle from '../Triangle/Triangle';
+import BigSquare from '../BigSquare/BigSquare'
 
-import "./ElementContainer.scss"
-import SettingWindow from '../SettingsWindow/SettingWindow';
+import'./ElementContainer.scss'
 
 class ElementContainer extends Component {
+
   state = {
-    styles: {
-      elementContainer: {
-        boxShadow: 'none',
-      },
-      square: {
-        boxShadow: 'none',
-      },
-      triangle: {
-        boxShadow: 'none',
-      },
-      circle: {
-        boxShadow: 'none',
-      },
-    },
-    modalVisible: true
+    bigSquareSelected: false,
+    circleSelected: false,
+    triangleSelected: false,
+    squareSelected: false,
   }
 
   handleElementChoosing = (e) => {
-    const {className} = e.target
-    const isShadowApply = (this.state.styles[className].boxShadow === 'none') ? '2px 2px peru' : 'none'
-    const updateState = {...this.state.styles, [className]: {boxShadow: isShadowApply}}
-    this.setState({styles: updateState})
+    const selectedElement = e.target.className.split(' ')[0]
+    const updatePropName = `${selectedElement}Selected`
+    console.log(updatePropName)
+    this.setState({ 
+        [updatePropName]: !this.state[updatePropName]
+    })
   }
 
-  handleClick = (e) => {
-    this.handleElementChoosing(e)
-  }
-
-  
-
+handleClick = (e) => {
+  this.handleElementChoosing(e)
+}
   render() {
-    const { styles } = this.state
+    const { 
+      bigSquareSelected,
+      circleSelected,
+      triangleSelected,
+      squareSelected 
+    } = this.state
+
     return (
-      <>
-        <div className="elementContainer" onClick={this.handleClick} style={styles.elementContainer}>
-          <Circle onClick={this.handleClick} style={styles} />
-          <Square onClick={this.handleClick} style={styles} />
-          <Triangle onClick={this.handleClick} style={styles} />
-          
-          
-        </div>
-        {
-            this.state.modalVisible && <SettingWindow />
-        }
-      </>
-      )
+      <BigSquare onClick={this.handleClick} isSelected={bigSquareSelected} >
+        <Circle onClick={this.handleClick} isSelected={circleSelected} />
+        <Square onClick={this.handleClick} isSelected={squareSelected} />
+        <Triangle onClick={this.handleClick} isSelected={triangleSelected} />
+      </BigSquare>
+    )
   } 
 }
 

@@ -3,5 +3,9 @@
     height:0px;
     border-left: 30px solid transparent;
     border-bottom: 30px solid #bada55;
+
+    &--selected {
+        box-shadow: 2px 2px peru;
+    }
     
 }
