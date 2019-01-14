@@ -10,37 +10,75 @@ import'./ElementContainer.scss'
 class ElementContainer extends Component {
 
   state = {
-    bigSquareSelected: false,
-    circleSelected: false,
-    triangleSelected: false,
-    squareSelected: false,
+    bigSquare: { 
+      isSelected: false,
+      position: ''
+    },
+    circle: { 
+      isSelected: false,
+      position: ''
+    },
+    triangle:{
+       isSelected: false,
+       position: ''
+      },
+    square:{
+       isSelected: false,
+       position: ''
+      },
+  }
+
+  
+
+  componentDidUpdate(prevProps) {
+    if( prevProps.position !== this.props.position) {
+      const upddatefPosition = this.props.position
+      this.handlePositionChange(upddatefPosition)
+      console.log('elo')
+    }
   }
 
   handleElementChoosing = (e) => {
     const selectedElement = e.target.className.split(' ')[0]
-    const updatePropName = `${selectedElement}Selected`
-    console.log(updatePropName)
+    let updatedState = {
+        isSelected: !this.state[selectedElement].isSelected
+      }
     this.setState({ 
-        [updatePropName]: !this.state[updatePropName]
+        [selectedElement]: updatedState
     })
   }
 
-handleClick = (e) => {
-  this.handleElementChoosing(e)
-}
-  render() {
-    const { 
-      bigSquareSelected,
-      circleSelected,
-      triangleSelected,
-      squareSelected 
-    } = this.state
+  handleClick = (e) => {
+    this.handleElementChoosing(e)
+  }
 
+  handlePositionChange = (position) => {
+    const selectedElements = Object.keys(this.state).filter(item => item !== 'position').filter(item => this.state[item].isSelected !== false )
+    const updatedPositions = selectedElements.map(item => ({[item]: {
+      ...this.state[item],
+      position: position,
+    }}))
+    const updatedState = Object.assign({},this.state, ...updatedPositions)
+
+    console.log(updatedState)
+    this.setState({
+     ...updatedState
+    })
+  }
+  
+  render() {
+    const {
+      bigSquare,
+      circle,
+      triangle,
+      square
+    } = this.state
+    
     return (
-      <BigSquare onClick={this.handleClick} isSelected={bigSquareSelected} >
-        <Circle onClick={this.handleClick} isSelected={circleSelected} />
-        <Square onClick={this.handleClick} isSelected={squareSelected} />
-        <Triangle onClick={this.handleClick} isSelected={triangleSelected} />
+      <BigSquare handleClick={this.handleClick} isSelected={bigSquare.isSelected} position={bigSquare.position} >
+        <Circle handleClick={this.handleClick} isSelected={circle.isSelected} position={circle.position}  />
+        <Square handleClick={this.handleClick} isSelected={square.isSelected} position={circle.position} />
+        <Triangle handleClick={this.handleClick} isSelected={triangle.isSelected} position={circle.position} />
       </BigSquare>
     )
   } 

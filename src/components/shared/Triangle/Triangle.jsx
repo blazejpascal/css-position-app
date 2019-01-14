@@ -3,13 +3,17 @@ import classNames from 'classnames'
 
 import "./Triangle.scss"
 
-const Triangle= ({onClick, isSelected}) => {
+const Triangle= ({handleClick, isSelected, position}) => {
+
+  const updatePosition = isSelected ? position : ''
   const styles = classNames({
+    'triangle': true,
     'triangle--selected' : isSelected,
+    [`triangle--${updatePosition}`]: updatePosition,
  })  
- 
+
   return (
-    <div className={`triangle ${styles}`} onClick={onClick}>
+    <div className={styles} onClick={handleClick}>
       
     </div>
   )

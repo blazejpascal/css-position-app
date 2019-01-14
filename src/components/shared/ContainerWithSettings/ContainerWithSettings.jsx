@@ -8,41 +8,25 @@ import "./ContainerWithSettings.scss"
 class ContainerWithSettings extends Component {
     state = {
       settingsVisible: true,
-      selectedElements: [],
-      selectValue: 'static'
-
+      position: ''
     }
 
-    
-
-    // handlePositionChange = () => {
-    //   if(this.state.selectValue) {
-    //   const {styles, selectedElements, selectValue} = this.state
-    //   const updatedPosition = Object.keys(styles).map(item => (styles[item] === selectedElements.map(item => item)) )
-    //   console.log(updatedPosition, selectValue)
-    // } else {
-    //   console.log('elo')
-    // }
-    // }
+    handlePositionChange = () => {  
+    }
 
     handleSelectChange = (e) => {
       const { value } = e.target
-      this.setState({selectValue: value})
-
-      this.handlePositionChange()
+      this.setState({position: value})
     }
-  
-    
-   
+
     render() {
-      const { styles, settingsVisible, selectedElements } = this.state
+      const { position, settingsVisible,} = this.state
       return (
         <div className="containerWithSettings">
-            <ElementContainer onClick={this.handleClick} selectedElements={selectedElements}/>
+            <ElementContainer onClick={this.handleClick} position={position} />
             {
                 settingsVisible && <SettingWindow 
                                       handleChange={this.handleSelectChange} 
-                                      isElementSelected={this.state.isElementSelected} 
                                       />
             }
         </div>
@@ -51,3 +35,4 @@ class ContainerWithSettings extends Component {
   }
 
   export default ContainerWithSettings
+  

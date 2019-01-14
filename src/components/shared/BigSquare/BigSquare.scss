@@ -9,6 +9,18 @@
     &--selected {
         box-shadow: 2px 2px peru;
     }
+    &--absolute {
+        position: absolute;
+    }
+    &--relative {
+        position: relative;
+    }
+    &--sticky {
+        position: sticky;
+    }
+    &--fixed {
+        position: fixed;
+    }
 
     :nth-child(1n) {
         margin-right: 15px;

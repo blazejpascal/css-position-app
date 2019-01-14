@@ -7,5 +7,21 @@
     &--selected {
         box-shadow: 2px 2px peru;
     }
+
+    &--absolute {
+        position: absolute;
+    }
+
+    &--relative {
+        position: relative;
+    }
+
+    &--sticky {
+        position: sticky;
+    }
+    
+    &--fixed {
+        position: fixed;
+    }
     
 }

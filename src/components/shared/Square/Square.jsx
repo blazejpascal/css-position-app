@@ -3,12 +3,16 @@ import classNames from 'classnames'
 
 import "./Square.scss"
 
-const Square = ({onClick, isSelected}) => {
+const Square = ({handleClick, isSelected , position}) => {
+
+  const updatePosition = isSelected ? position : ''
   const styles = classNames({
+    'square' : true,
     'square--selected' : isSelected,
+    [`sqare--${updatePosition}`]: updatePosition,
  })  
   return (
-      <div className={`square ${styles}`}  onClick={onClick}>
+      <div className={styles}  onClick={handleClick}>
       
     </div>
   )

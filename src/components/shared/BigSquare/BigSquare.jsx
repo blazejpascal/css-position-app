@@ -3,15 +3,18 @@ import classNames from 'classnames'
 
 import './BigSquare.scss'
 
-const BigSquare = ({onClick, children, isSelected}) => {
+const BigSquare = ({handleClick, children, isSelected, position}) => {
+
+  const updatePosition = isSelected ? position : ''
   const styles = classNames({
     'bigSquare': true,
     'bigSquare--selected': isSelected,
+    [`bigSquare--${updatePosition}`]: updatePosition,
     
  })  
 
   return (
-    <div className={styles} onClick={onClick} >
+    <div className={styles} onClick={handleClick} >
       {children}
     </div>
   )
