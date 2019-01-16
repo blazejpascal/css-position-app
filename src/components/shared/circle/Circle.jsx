@@ -5,7 +5,7 @@ import "./Circle.scss"
 
 const Circle = ({handleClick, isSelected, position}) => {
 
-const updatePosition = isSelected ? position : ''
+let updatePosition = isSelected ? position : ''
 const styles = classNames({
     'circle': true,
     'circle--selected' : isSelected,

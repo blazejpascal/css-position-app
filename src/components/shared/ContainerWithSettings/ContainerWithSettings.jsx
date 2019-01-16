@@ -11,9 +11,6 @@ class ContainerWithSettings extends Component {
       position: ''
     }
 
-    handlePositionChange = () => {  
-    }
-
     handleSelectChange = (e) => {
       const { value } = e.target
       this.setState({position: value})
@@ -23,7 +20,7 @@ class ContainerWithSettings extends Component {
       const { position, settingsVisible,} = this.state
       return (
         <div className="containerWithSettings">
-            <ElementContainer onClick={this.handleClick} position={position} />
+            <ElementContainer position={position} />
             {
                 settingsVisible && <SettingWindow 
                                       handleChange={this.handleSelectChange} 
@@ -34,5 +31,5 @@ class ContainerWithSettings extends Component {
     } 
   }
 
-  export default ContainerWithSettings
+export default ContainerWithSettings
   

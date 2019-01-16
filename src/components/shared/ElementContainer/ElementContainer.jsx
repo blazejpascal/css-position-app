@@ -28,12 +28,10 @@ class ElementContainer extends Component {
       },
   }
 
-  
-
   componentDidUpdate(prevProps) {
     if( prevProps.position !== this.props.position) {
-      const upddatefPosition = this.props.position
-      this.handlePositionChange(upddatefPosition)
+      const upddatedPosition = this.props.position
+      this.handlePositionChange(upddatedPosition)
       console.log('elo')
     }
   }
@@ -41,6 +39,7 @@ class ElementContainer extends Component {
   handleElementChoosing = (e) => {
     const selectedElement = e.target.className.split(' ')[0]
     let updatedState = {
+        ...this.state[selectedElement],
         isSelected: !this.state[selectedElement].isSelected
       }
     this.setState({ 
@@ -58,7 +57,7 @@ class ElementContainer extends Component {
       ...this.state[item],
       position: position,
     }}))
-    const updatedState = Object.assign({},this.state, ...updatedPositions)
+    const updatedState = Object.assign({}, ...updatedPositions)
 
     console.log(updatedState)
     this.setState({
